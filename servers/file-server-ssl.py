@@ -18,13 +18,13 @@ count = 0
 @app.after_request
 def process(response):
     global count
-    print('\n============== Request Count:' + str(count) + ' ==============')
+    print('\n============== Request Count:' + str(count) + ' ==============', flush=True)
     count = count + 1
     # log the request
-    print(request.method + ' ' + request.full_path)
+    print(request.method + ' ' + request.full_path, flush=True)
     for h in request.headers:
-        print(h[0] + ': ' + h[1])
-    print('\n' + request.stream.read().decode(), file=sys.stderr)
+        print(h[0] + ': ' + h[1], flush=True)
+    print('\n' + request.stream.read().decode(), file=sys.stderr, flush=True)
     # return original response
     return response
 
