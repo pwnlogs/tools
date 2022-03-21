@@ -1,4 +1,8 @@
 """
+
+    CAUTION: Use file-server-ssl.py instead
+
+
 A Flask file server with CORS support.
 """
 import sys
