@@ -13,6 +13,9 @@ mv Mobile-Security-Framework-MobSF/ mobsf
 cd mobsf/
 ./setup.sh
 
+echo 'installing libimobiledevice'
+sudo apt-get install usbmuxd libimobiledevice6 libimobiledevice-utils
+
 
 echo 'installing frida-tools'
 pip install frida-tools
