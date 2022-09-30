@@ -32,3 +32,8 @@ EOL'
 echo 'add alias for vim'
 echo 'alias vi=vim' >> ~/.bashrc
 
+echo 'install tree'
+sudo apt install tree
+
+echo 'install wget'
+sudo apt install wget
