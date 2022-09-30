@@ -38,8 +38,4 @@ sudo apt install tree
 echo 'install wget'
 sudo apt install wget
 
-echo 'install snap'
-sudo apt install snapd
 
-echo 'install sqllite browser'
-snap install sqlitebrowser
