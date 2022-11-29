@@ -3,7 +3,6 @@ mkdir ~/apps
 
 echo 'installing essentials'
 sudo apt install -y terminator
-sudo apt install -y vim
 sudo apt-get install usbutils
 
 
