@@ -17,7 +17,7 @@ set clipboard=unnamedplus
 set autoindent
 EOL
 
-sudo bash -c 'cat > /root/.vimrc <<EOL
+cat > ~/.vimrc <<EOL
 filetype plugin indent on
 set tabstop=4
 set shiftwidth=4
@@ -27,7 +27,7 @@ syntax on
 set showcmd
 set clipboard=unnamedplus
 set autoindent
-EOL'
+EOL
 
 echo 'add alias for vim'
 echo 'alias vi=vim' >> ~/.bashrc
@@ -39,3 +39,13 @@ echo 'install wget'
 sudo apt install wget
 
 
+# define aliases
+cat > ~/.bashrc <<EOL
+alias lxc-dev='lxc exec dev -- sudo --user ubuntu --login bash'
+alias l='ls -la'
+alias cpr='cp -r -u'
+alias nmap='sudo nmap'
+alias python=python3
+alias comma-seperated='tr '\n' ',' | head -c -1'
+EOL
+echo '[TODO] Update lxc-dev alias
