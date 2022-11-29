@@ -46,6 +46,9 @@ alias l='ls -la'
 alias cpr='cp -r -u'
 alias nmap='sudo nmap'
 alias python=python3
-alias comma-seperated='tr '\n' ',' | head -c -1'
 EOL
-echo '[TODO] Update lxc-dev alias
+echo '[TODO] Update lxc-dev alias'
+
+
+# define functions
+ports-from-nmap () { cat $1 | grep -E '/(tcp|udp)\s+open' | cut -d'/' -f1 | sort | uniq | tr '\n' ',' | head -c -1; }
