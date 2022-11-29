@@ -1,10 +1,13 @@
-echo 'updating and upgrading'
+echo '>>> updating and upgrading'
 sudo apt update
 sudo apt upgrade
+echo '<<< update and upgrade done'
 
+# tools
+echo '>>> vim setup'
 echo 'installing vim'
 sudo apt install vim
-echo 'configuring vim'
+echo 'configuring vim for user'
 cat > ~/.vimrc <<EOL
 filetype plugin indent on
 set tabstop=4
@@ -16,30 +19,22 @@ set showcmd
 set clipboard=unnamedplus
 set autoindent
 EOL
-
-cat > ~/.vimrc <<EOL
-filetype plugin indent on
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set number
-syntax on
-set showcmd
-set clipboard=unnamedplus
-set autoindent
-EOL
-
+echo 'configuring vim for root'
+sudo cp ~/.vimrc /root/.vimrc
 echo 'add alias for vim'
 echo 'alias vi=vim' >> ~/.bashrc
+echo '<<< vim setup done'
 
+# tools
+echo '>>> installing essential tools'
 echo 'install tree'
 sudo apt install tree
-
 echo 'install wget'
 sudo apt install wget
+echo '<<< installing essential tools done'
 
-
-# define aliases
+# aliases
+echo '>>> defining aliases'
 cat > ~/.bashrc <<EOL
 alias lxc-dev='lxc exec dev -- sudo --user ubuntu --login bash'
 alias l='ls -la'
@@ -48,7 +43,9 @@ alias nmap='sudo nmap'
 alias python=python3
 EOL
 echo '[TODO] Update lxc-dev alias'
+echo '<<< defining aliases done'
 
-
-# define functions
+# functions
+echo '>>> defining functions'
 ports-from-nmap () { cat $1 | grep -E '/(tcp|udp)\s+open' | cut -d'/' -f1 | sort | uniq | tr '\n' ',' | head -c -1; }
+echo '<<< defining functions done'
