@@ -6,7 +6,7 @@ echo '<<< update and upgrade done'
 # tools
 echo '>>> vim setup'
 echo 'installing vim'
-sudo apt install vim
+sudo apt install -y vim
 echo 'configuring vim for user'
 cat > ~/.vimrc <<EOL
 filetype plugin indent on
@@ -28,9 +28,9 @@ echo '<<< vim setup done'
 # tools
 echo '>>> installing essential tools'
 echo 'install tree'
-sudo apt install tree
+sudo apt install -y tree
 echo 'install wget'
-sudo apt install wget
+sudo apt install -y wget
 echo '<<< installing essential tools done'
 
 # aliases
