@@ -1,6 +1,6 @@
 echo '>>> updating and upgrading'
-sudo apt update
-sudo apt upgrade
+sudo apt -y update
+sudo apt -y upgrade
 echo '<<< update and upgrade done'
 
 # tools
