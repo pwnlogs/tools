@@ -33,6 +33,7 @@ echo 'install wget'
 sudo apt install -y wget
 echo '<<< installing essential tools done'
 sudo apt install python3-pip
+sudo apt install git
 
 # aliases
 echo '>>> defining aliases'
