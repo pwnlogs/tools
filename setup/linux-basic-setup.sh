@@ -5,9 +5,7 @@ echo '<<< update and upgrade done'
 
 # tools
 echo '>>> vim setup'
-echo 'installing vim'
 sudo apt install -y vim
-echo 'configuring vim for user'
 cat > ~/.vimrc <<EOL
 filetype plugin indent on
 set tabstop=4
@@ -19,21 +17,19 @@ set showcmd
 set clipboard=unnamedplus
 set autoindent
 EOL
-echo 'configuring vim for root'
 sudo cp ~/.vimrc /root/.vimrc
-echo 'add alias for vim'
 echo 'alias vi=vim' >> ~/.bashrc
 echo '<<< vim setup done'
 
 # tools
 echo '>>> installing essential tools'
-echo 'install tree'
 sudo apt install -y tree
-echo 'install wget'
 sudo apt install -y wget
-echo '<<< installing essential tools done'
 sudo apt install python3-pip
 sudo apt install git
+sudi apt install tmux
+echo 'Please manually install https://github.com/tmux-plugins/tpm'
+echo '<<< installing essential tools done'
 
 # aliases
 echo '>>> defining aliases'
