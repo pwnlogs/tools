@@ -32,6 +32,7 @@ sudo apt install -y tree
 echo 'install wget'
 sudo apt install -y wget
 echo '<<< installing essential tools done'
+sudo apt install python3-pip
 
 # aliases
 echo '>>> defining aliases'
