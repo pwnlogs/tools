@@ -27,8 +27,11 @@ sudo apt install -y tree
 sudo apt install -y wget
 sudo apt install python3-pip
 sudo apt install git
-sudi apt install tmux
+sudo apt install tmux
 echo 'Please manually install https://github.com/tmux-plugins/tpm'
+echo 'Please manually install Google chrome'
+sudo apt install firefox
+echo 'Please manually install Visual studio code'
 echo '<<< installing essential tools done'
 
 # aliases
