@@ -28,6 +28,7 @@ sudo apt install -y wget
 sudo apt install python3-pip
 sudo apt install git
 sudo apt install tmux
+echo 'Please manually save https://github.com/pwnlogs/tools/blob/main/setup/.tmux.conf'
 echo 'Please manually install https://github.com/tmux-plugins/tpm'
 echo 'Please manually install Google chrome'
 sudo apt install firefox
