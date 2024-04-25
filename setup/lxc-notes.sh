@@ -1,5 +1,7 @@
-USB Passthrough
-===============
+# Start terminator on LXC container
+lxc exec {container-name} -- sudo --user {user-name} --login terminator
+
+# USB Passthrough
 $ lsusb
 Bus 002 Device 003: ID 0451:8041 Texas Instruments, Inc. 
 Bus 002 Device 002: ID 0451:8041 Texas Instruments, Inc. 
@@ -13,5 +15,5 @@ Bus 001 Device 003: ID 0451:8043 Texas Instruments, Inc.
 Bus 001 Device 002: ID 072f:90cc Advanced Card Systems, Ltd ACR38 SmartCard Reader
 Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 
-$ lxc config device add c1 sony usb vendorid=0fce productid=51da
+$ lxc config device add {container-name} {name-for-new-device} usb vendorid=0fce productid=51da
 
