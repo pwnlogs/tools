@@ -1,6 +1,9 @@
 # Start terminator on LXC container
 lxc exec {container-name} -- sudo --user {user-name} --login terminator
 
+# Share directory with container
+lxc config device add {container-name} {name-for-new-share} disk source=/{source-path} path=/{destination-path}
+
 # USB Passthrough
 $ lsusb
 Bus 002 Device 003: ID 0451:8041 Texas Instruments, Inc. 
