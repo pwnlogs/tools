@@ -30,9 +30,9 @@ echo '>>> installing essential tools'
 sudo apt install -y curl
 sudo apt install -y tree
 sudo apt install -y wget
-sudo apt install python3-pip
-sudo apt install git
-sudo apt install tmux
+sudo apt install -y python3-pip
+sudo apt install -y git
+sudo apt install -y tmux
 wget -O ~/.tmux.conf 'https://raw.githubusercontent.com/pwnlogs/tools/main/setup/.tmux.conf'
 sudo cp ~/.tmux.conf /root/.tmux.conf
 # setup tmux plugins - https://github.com/tmux-plugins/tpm (tmux.conf updates are already made)
