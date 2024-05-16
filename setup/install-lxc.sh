@@ -9,7 +9,8 @@ sudo su $USER
 lxd init --minimal
 
 # Create a new container
-lxc image list ubuntu: 24.04 architecture=$(uname -m)
+lxc image list ubuntu: 24.04 architecture=$(uname -m) # look in ubuntu's repo
+lxc image list images: 24.04 architecture=$(uname -m) # look at the default images repo
 lxc launch ubuntu:24.04 dev # dev is the container name
 
 # Allow emulation inside container
