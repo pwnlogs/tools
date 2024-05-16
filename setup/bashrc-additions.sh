@@ -1,3 +1,4 @@
+
 # >>> >>> >>> BASH ADDITIONS
 
 # >>> aliases
