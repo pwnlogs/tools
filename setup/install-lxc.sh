@@ -28,4 +28,6 @@ lxc profile add dev gui-audio
 # NOTE: If there are errors about X0, check `ls /tmp/.X11-unix/` has X0 or X1 and update the profile accordingly
 # Both the device path and the environment variable in the profile should be updated
 # Install meso tools
-lxc exec dev -- apt install mesa-utils
+lxc exec dev -- apt install -y mesa-utils
+# Install pulse audio utils
+lxc exec dev -- apt install -y pulseaudio-utils
