@@ -31,3 +31,9 @@ lxc profile add dev gui-audio
 lxc exec dev -- apt install -y mesa-utils
 # Install pulse audio utils
 lxc exec dev -- apt install -y pulseaudio-utils
+
+# Share folders with the container
+mkdir ~/lxc-share
+lxc config device add dev share-lxc-share disk source=/home/$USER/lxc-share path=/home/ubuntu/lxc-share
+mkdir ~/projects
+lxc config device add dev share-projects disk source=/home/$USER/projects path=/home/ubuntu/projects
