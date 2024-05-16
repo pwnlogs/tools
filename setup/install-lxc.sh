@@ -23,4 +23,9 @@ echo "root:$UID:1" | sudo tee -a /etc/subuid /etc/subgid
 # create GUI profile
 lxc profile create gui-audio
 curl https://raw.githubusercontent.com/pwnlogs/tools/main/setup/lxc-gui-audio-profile.yaml | lxc profile edit gui-audio
-
+# apply profile to container
+lxc profile add dev gui-audio
+# NOTE: If there are errors about X0, check `ls /tmp/.X11-unix/` has X0 or X1 and update the profile accordingly
+# Both the device path and the environment variable in the profile should be updated
+# Install meso tools
+lxc exec dev -- apt install mesa-utils
