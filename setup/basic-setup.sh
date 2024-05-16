@@ -52,4 +52,5 @@ echo '<<< installing essential tools done'
 # bash additions
 echo '>>> updating bashrc'
 curl https://raw.githubusercontent.com/pwnlogs/tools/main/setup/bashrc-additions.sh >> ~/.bashrc
+source ~/.bashrc
 echo '<<< updating bashrc'
