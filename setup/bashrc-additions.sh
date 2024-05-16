@@ -7,6 +7,7 @@ alias vi='vim'
 alias python='python3'
 alias nmap='sudo nmap'
 alias cpr='cp -r -u'
+alias xclip='xclip -selection c'
 alias lxc-dev='lxc exec dev -- sudo --user ubuntu --login bash'
 # <<< aliases
 
