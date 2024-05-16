@@ -28,11 +28,19 @@ sudo apt install -y wget
 sudo apt install python3-pip
 sudo apt install git
 sudo apt install tmux
-echo 'Please manually save https://github.com/pwnlogs/tools/blob/main/setup/.tmux.conf'
-echo 'Please manually install https://github.com/tmux-plugins/tpm'
-echo 'Please manually install Google chrome'
-sudo apt install firefox
-echo 'Please manually install Visual studio code'
+wget -O ~/.tmux.conf 'https://raw.githubusercontent.com/pwnlogs/tools/main/setup/.tmux.conf'
+sudo cp ~/.tmux.conf /root/.tmux.conf
+# setup tmux plugins - https://github.com/tmux-plugins/tpm (tmux.conf updates are already made)
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+tmux source ~/.tmux.conf
+
+# Graphic apps
+sudo apt install terminator
+# sudo apt install firefox
+echo 'Please install the following manually:' 
+echo '    - Google chrome'
+echo '    - Visual studio code'
+echo '    - Pycharm (community)'
 echo '<<< installing essential tools done'
 
 # aliases
