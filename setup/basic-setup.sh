@@ -23,7 +23,6 @@ set clipboard=unnamedplus
 set autoindent
 EOL
 sudo cp ~/.vimrc /root/.vimrc
-echo 'alias vi=vim' >> ~/.bashrc
 echo '<<< vim setup done'
 
 # tools
