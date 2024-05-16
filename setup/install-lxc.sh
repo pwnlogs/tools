@@ -11,7 +11,8 @@ lxd init --minimal
 # Create a new container
 lxc image list ubuntu: 24.04 architecture=$(uname -m) # look in ubuntu's repo
 lxc image list images: 24.04 architecture=$(uname -m) # look at the default images repo
-lxc launch ubuntu:24.04 dev # dev is the container name
+lxc launch ubuntu:24.04 dev # create using 24.04 image from ubuntu repo;  dev is the container name
+lxc launch images:kali kali # create using kali image from 'images' repo; kali is the contianer name
 
 # Allow emulation inside container
 lxc config set dev security.nesting true
