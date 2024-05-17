@@ -43,3 +43,6 @@ lxc config device add dev share-projects disk source=/home/$USER/projects path=/
 # Install apps
 sudo apt install terminator
 sudo snap install code --classic
+
+# Graphic apps from sudo
+xhost +
