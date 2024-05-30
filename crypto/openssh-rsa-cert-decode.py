@@ -28,11 +28,12 @@ def print_as_string(k, v, decode_bytes=True):
         v = v.decode()
     print('%s: %s' % (k, v), flush=True)
 
-def print_as_int(k, v):
+def print_as_int(k, v, hex=False):
+    format = '%s: 0x%x' if hex else '%s: %d' 
     if type(v) == int:
-        print('%s: %d' % (k, v), flush=True)
+        print(format % (k, v), flush=True)
     else:
-        print('%s: %d' % (k, int.from_bytes(v, 'big', signed=False)), flush=True)
+        print(format % (k, int.from_bytes(v, 'big', signed=False)), flush=True)
 
 
 if len(sys.argv) > 2:
@@ -46,9 +47,9 @@ else:
 with open(input_file, 'rb') as f:
     data = f.read()
     split_data = data.split(b' ')
-    if len(split_data) > 2:
-        print('More than 2 components found!')
-        sys.edit()
+    if len(split_data) > 3:
+        print('More than 3 components found!')
+        sys.exit()
     
     # print('comment: %s' % split_data[0], flush=True)
     # sys.stdout.buffer.write(b'\n')
@@ -82,15 +83,15 @@ with open(input_file, 'rb') as f:
 
     # nonce
     v, i = get_next_element(data, i, 'string')
-    print_as_int('nonce', v)
+    print_as_int('nonce', v, hex=True)
 
     # e
     v, i = get_next_element(data, i, 'string') # mpint is stored as string
-    print_as_int('e', v)
+    print_as_int('e', v, hex=True)
 
     # n
     v, i = get_next_element(data, i, 'string')
-    print_as_int('n', v)
+    print_as_int('n', v, hex=True)
 
     # serial
     v, i = get_next_element(data, i, 'uint64')
@@ -122,7 +123,19 @@ with open(input_file, 'rb') as f:
 
     # string    critical options
     v, i = get_next_element(data, i, 'string')
-    print_as_string('critical options', v)
+    print('critical options:')
+    ii = 0
+    j = 0
+    while ii < len(v):
+        vv, ii = get_next_element(v, ii, 'string')
+        if j % 2 == 0:
+            print_as_string('          ', vv)
+        else:
+            iii = 0
+            while iii < len(vv):
+                vvv, iii = get_next_element(vv, iii, 'string')
+                print_as_string('              ', vvv)
+        j += 1
 
     # string    extensions
     v, i = get_next_element(data, i, 'string')
