@@ -54,7 +54,7 @@ with open(input_file, 'rb') as f:
 
     # https://github.com/openssh/openssh-portable/blob/master/PROTOCOL.certkeys
     '''
-    #define AUTH_MAGIC      "openssh-key-v1"
+    #define AUTH_MAGIC      "openssh-key-v1" (NULL terminated)
 
         byte[]	AUTH_MAGIC
         string	ciphername
@@ -90,83 +90,100 @@ with open(input_file, 'rb') as f:
     v, i = get_next_element(data, i, 'uint32')
     print_as_int('number of keys', v)
     
+    key_count = v
     # loop through all the public keys
-    for ii in range(v):
+    print('public keys')
+    for ii in range(key_count):
         '''
         int32  length of public key
         string type    ("ssh-rsa")
         mpint  e       (RSA public exponent)
         mpint  n       (RSA modulus)
         '''
-        print('Key %d' % (ii+1))
+        print('key %d' % (ii+1))
 
+        # lengh of key[ii]
         v, i = get_next_element(data, i, 'uint32')
-        # print_as_int('    length of key section', v, hex=True)
+        # print_as_int('    length of key', v, hex=True)
 
+        # type of key[ii]
         v, i = get_next_element(data, i, 'string')
         print_as_string('    type', v)
 
+        # e of key[ii]
         v, i = get_next_element(data, i, 'string')
         print_as_int('    e', v, hex=True)
 
+        # n of key[ii]
         v, i = get_next_element(data, i, 'string')
         print_as_int('    n', v, hex=True)
 
-    '''
-    uint32  check-int
-    uint32  check-int  (must match with previous check-int value)
-    string  type       ("ssh-rsa")
-    mpint   n          (RSA modulus)
-    mpint   e          (RSA public exponent)
-    mpint   d          (RSA private exponent)
-    mpint   iqmp       (RSA Inverse of Q Mod P, a.k.a iqmp)
-    mpint   p          (RSA prime 1)
-    mpint   q          (RSA prime 2)
-    string  comment    (Comment associated with the key)
-    byte[n] padding    (Padding according to the rules above)
-    '''
+    # loop through all the public keys
+    print('private keys:')
+    for ii in range(key_count):
+        '''
+        uint32  checkint
+        uint32  checkint
+        string  type
+        mpint   n
+        mpint   e
+        mpint   d
+        mpint   iqmp
+        mpint   p
+        mpint   q
+        string  comment
+        byte[n] padding
+        '''
 
-    print('private key section:')
-    # length of private key section
-    v, i = get_next_element(data, i, 'uint32')
-    # print_as_int('check-int', v, hex=True)
+        print('key %d' % (ii+1))
 
-    # check-int
-    v, i = get_next_element(data, i, 'uint32')
-    print_as_int('    check-int', v, hex=True)
+        # length of key[ii]
+        v, i = get_next_element(data, i, 'uint32')
+        # print_as_int('    private key size', v, hex=True)
+        private_key_size = v
+        start_of_private_key = i
 
-    # check-int
-    v, i = get_next_element(data, i, 'uint32')
-    print_as_int('    check-int', v, hex=True)
+        # check-int of key[ii]
+        v, i = get_next_element(data, i, 'uint32')
+        print_as_int('    check-int', v, hex=True)
 
-    # private key type
-    v, i = get_next_element(data, i, 'string')
-    print_as_string('    private key type', v)
+        # check-int of key[ii]
+        v, i = get_next_element(data, i, 'uint32')
+        print_as_int('    check-int', v, hex=True)
 
-    # n
-    v, i = get_next_element(data, i, 'string')
-    print_as_int('    n', v, hex=True)
+        # type of key[ii]
+        v, i = get_next_element(data, i, 'string')
+        print_as_string('    private key type', v)
 
-    # e
-    v, i = get_next_element(data, i, 'string')
-    print_as_int('    e', v, hex=True)
+        # n of key[ii]
+        v, i = get_next_element(data, i, 'string')
+        print_as_int('    n', v, hex=True)
 
-    # d
-    v, i = get_next_element(data, i, 'string')
-    print_as_int('    d', v, hex=True)
+        # e of key[ii]
+        v, i = get_next_element(data, i, 'string')
+        print_as_int('    e', v, hex=True)
 
-    # iqmp
-    v, i = get_next_element(data, i, 'string')
-    print_as_int('    iqmp', v, hex=True)
+        # d of key[ii]
+        v, i = get_next_element(data, i, 'string')
+        print_as_int('    d', v, hex=True)
 
-    # p
-    v, i = get_next_element(data, i, 'string')
-    print_as_int('    p', v, hex=True)
+        # iqmp of key[ii]
+        v, i = get_next_element(data, i, 'string')
+        print_as_int('    iqmp', v, hex=True)
 
-    # q
-    v, i = get_next_element(data, i, 'string')
-    print_as_int('    q', v, hex=True)
+        # p of key[ii]
+        v, i = get_next_element(data, i, 'string')
+        print_as_int('    p', v, hex=True)
 
-    # comment
-    v, i = get_next_element(data, i, 'string')
-    print_as_string('    comment', v)
+        # q of key[ii]
+        v, i = get_next_element(data, i, 'string')
+        print_as_int('    q', v, hex=True)
+
+        # comment of key[ii]
+        v, i = get_next_element(data, i, 'string')
+        print_as_string('    comment', v)
+
+        # padding (so that size % 256 = 0)
+        padding = data[i:start_of_private_key + private_key_size]
+        print_as_string('    padding', b'0x' + b''.join([(hex(j)[2:]).zfill(2).encode() for j in padding]))
+        i = start_of_private_key + private_key_size
