@@ -1,0 +1,71 @@
+pre-text: ssh-rsa
+post-text: "some-comment"
+file-type: private-key
+
+data:
+  type-str:
+    type: bytes
+    value: "openssh-key-v1\x00"
+  ciphername: 
+    type: str
+    value: 'none'
+  kdfname:
+    type: str
+    value: 'none'
+  kdfoptions:
+    type: str
+    value: ''
+  no-of-public-keys:
+    type: int32
+    value: 1
+  public-key-1:
+    type: list
+    value:
+      type-str:
+        type: str
+        value: ssh-rsa
+      e: 
+        type: mpint
+        value: 0x10001
+      n:
+        type: mpint
+        value:  0xcc691aa0bf18a320b5d988b2d6fc59f634afe40ae8a9e81b80e00c94946e2b4753113e5837ea2dcfc574fe7889e8b4700cfbbfdc0d51d8ef5cefa64b753a802757c07dc0543c09bf330a8de3eb0308adeb689bd6f7708a9e67502a77752e16c622d18c9abe09b6cede323ea86406d0cc3b46b466bd2c058065fa962fdb785537
+  private-key-1:
+    type: list
+    value:
+      checkint1:
+        type: int32
+        value: 0xed06aaee
+      checkint2:
+        type: int32
+        value: 0xed06aaee
+      type-str:
+        type: str
+        value: ssh-rsa
+      modulus:
+        type: mpint
+        value:  0xcc691aa0bf18a320b5d988b2d6fc59f634afe40ae8a9e81b80e00c94946e2b4753113e5837ea2dcfc574fe7889e8b4700cfbbfdc0d51d8ef5cefa64b753a802757c07dc0543c09bf330a8de3eb0308adeb689bd6f7708a9e67502a77752e16c622d18c9abe09b6cede323ea86406d0cc3b46b466bd2c058065fa962fdb785537
+      exponent:
+        type: mpint
+        value: 0x10001
+      d:
+        type: mpint
+        value: 0xcdb477b78c979e922c6eddc21bd79830cc94b548c51b37197678023103ae5a9f4c58ee0499407119c5fc1699f72ed7666baa6d49659e1851c994e224cdb43181991c279a03e3964c0461be63c205c91fc1a7cdb3b6c64ef4ec5ec90a34c2bc9e4aab76f605e351cebbccdb6da0c7be2326bf65cdcf03b5d836436d753662fb1
+      iqmp:
+        type: mpint
+        value: 0x7d8dae9e69f639b91c6c053307225ff1ac7b121dd2c85742eb82784dba3288fa72b0370e24557f61d2afd99970c3e899ec14e929df314ea70ab80947dfc9faf8
+      p:
+        type: mpint
+        value: 0xf1433b19fb39b894f39c28f6f51c0d269eb1ec8bb5c8bd721bb4667ab03ecb28488b028515122a8a0011821a3043a5d7c305e29d8310a0efb5461b4bbbb5c723
+      q:
+        type: mpint
+        value: 0xd8e59864d7f66a51c48857fc7c431aaf2135d15867cfc67beedec1b777bfc77397a90866e817a0720722827225258c2b99c7c9e8d1f3212257e9219c9033a4dd
+      comment:
+        type: str
+        value: 'ubuntu@dev'
+      padding: 
+        type: bytes
+        value: "\x01"
+
+
+
