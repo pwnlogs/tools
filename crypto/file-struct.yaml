@@ -1,5 +1,6 @@
 pre-text: ssh-rsa
 post-text: "some-comment"
+file-type: "public-key"
 
 data:
   s:
@@ -7,7 +8,7 @@ data:
     value: ssh-rsa
   e: 
     type: mpint
-    value: 0x27
+    value: 0x10001
   n:
     type: mpint
-    value: 0x31
+    value: 0xcc691aa0bf18a320b5d988b2d6fc59f634afe40ae8a9e81b80e00c94946e2b4753113e5837ea2dcfc574fe7889e8b4700cfbbfdc0d51d8ef5cefa64b753a802757c07dc0543c09bf330a8de3eb0308adeb689bd6f7708a9e67502a77752e16c622d18c9abe09b6cede323ea86406d0cc3b46b466bd2c058065fa962fdb785537
