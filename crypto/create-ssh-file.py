@@ -4,7 +4,8 @@ import sys
 import base64
 import argparse
 import yaml
-
+import binascii
+from textwrap import wrap
 
 
 
@@ -21,12 +22,10 @@ def str_to_raw(s):
     if l % 2 == 1:
         l += 1
         s = b'0' + s
-    return b''.join([
-            chr(int(s[2*i:2*(i+1)], base=16)).encode() for i in range(int(l/2))
-        ])
+    return bytes([int(s[2*i:2*(i+1)], base=16) for i in range(int(l/2))])
 
 
-def get_formatted_str(d, t):
+def get_formatted(d, t):
     if t == 'int32':
         return str_to_raw(hex(d)[2:].zfill(8))
 
@@ -39,20 +38,22 @@ def get_formatted_str(d, t):
         return get_size(d) + d
     
     elif t == 'mpint':
-        d = hex(d)[2:].encode()
+        d = hex(d)[2:]
+        d = d.encode()
         d = str_to_raw(d)
-        return get_formatted_str(d, 'str')
+        return get_formatted(d, 'str')
 
 
 def get_encoded(conf):
     d = b''
     for key in conf:
         if conf[key]['type'] == 'list':
-            pass
+            dd = get_encoded(conf[key]['value'])
+            d = d + get_formatted(dd, 'str')
         elif conf[key]['type'] == 'bytes':
-            pass
+            d = d + conf[key]['value'].encode()
         else:
-            d = d + get_formatted_str(conf[key]['value'], conf[key]['type'])
+            d = d + get_formatted(conf[key]['value'], conf[key]['type'])
     return d
 
 
@@ -73,15 +74,27 @@ with open(args.input_file) as stream:
     except yaml.YAMLError as exc:
         print(exc)
 
-pre_text = conf['pre-text'].encode()
-post_text = conf['post-text'].encode()
+if conf['file-type'] == 'public-key' or conf['file-type'] == 'cert':
+    pre_text = conf['pre-text'].encode()
+    post_text = conf['post-text'].encode()
+    seperator = b' '
+
+elif conf['file-type'] == 'private-key':
+    pre_text = b'-----BEGIN OPENSSH PRIVATE KEY-----'
+    post_text = b'-----END OPENSSH PRIVATE KEY-----'
+    seperator = b'\n'
+
 
 with open(args.output_file, 'wb') as f:
 
     data = get_encoded(conf['data'])
     data = base64.b64encode(data)
 
-    f.write(b' '.join([
+    if conf['file-type'] == 'private-key':
+        data = '\n'.join(wrap(data.decode(), width=70))
+        data = data.encode()
+
+    f.write(seperator.join([
         pre_text,
         data,
         post_text
