@@ -1,0 +1,13 @@
+pre-text: ssh-rsa
+post-text: "some-comment"
+
+data:
+  s:
+    type: str
+    value: ssh-rsa
+  e: 
+    type: mpint
+    value: 0x27
+  n:
+    type: mpint
+    value: 0x31
