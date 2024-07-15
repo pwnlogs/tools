@@ -13,6 +13,7 @@ alias lxc-dev='lxc exec dev -- sudo --user ubuntu --login bash'
 
 # >>> defining functions
 ports-from-nmap () { cat $1 | grep -E '/(tcp|udp)\s+open' | cut -d'/' -f1 | sort | uniq | tr '\n' ',' | head -c -1; }
+mkdir-and-cd () { mkdir $1; cd $1; }
 # <<< defining functions done
 
 # >>> define $PS1
