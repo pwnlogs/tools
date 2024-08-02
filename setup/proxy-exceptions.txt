@@ -1,0 +1,16 @@
+127.0.0.1
+::1
+localhost
+clients4.google.com
+kali
+data.pendo.io
+challenges.cloudflare.com
+darkreader.org
+content-autofill.googleapis.com
+data.nessus-telemetry.tenable.com
+www.google-analytics.com
+bam-cell.nr-data.net
+www.googletagmanager.com
+adservice.google.com
+content.nessus-telemetry.tenable.com
+translate.google.com
